@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STOCKJAN - Updates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        /* Variables de color */
+        :root {
+            --color-primary: #1ED760; /* Verde vibrante para acentos */
+            --color-background: #0D0D0D; /* Negro profundo para fondo */
+            --color-surface: #1C1C1C; /* Negro grisáceo para contenedores */
+            --color-text-light: #F0F0F0; /* Blanco suave para texto principal */
+            --color-text-muted: #A0A0A0; /* Gris para texto secundario */
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,135 +22,223 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-background);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            color: var(--color-text-light);
+            animation: fadeIn 1s ease-in-out;
         }
-        
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Contenedor Principal */
         .container {
-            background: white;
-            border-radius: 20px;
+            background-color: var(--color-surface);
+            border-radius: 16px;
             padding: 40px;
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05); 
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.6s ease-out 0.3s forwards;
         }
         
+        @keyframes slideUp {
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Estilo del Header/Logo de la App */
+        .logo-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-header img {
+            width: 40px; 
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 8px; 
+            transition: transform 0.3s;
+        }
+
+        .logo-header img:hover {
+            transform: rotate(5deg);
+        }
+
         h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            color: var(--color-text-light);
+            margin-bottom: 8px;
+            font-size: 2.2em;
+            font-weight: 800;
         }
         
         .subtitle {
-            color: #666;
+            color: var(--color-text-muted);
             margin-bottom: 30px;
-            font-size: 1.1em;
+            font-size: 1em;
+            font-weight: 400;
         }
         
+        /* Caja de Versión */
         .version-box {
-            background: #f5f5f5;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            background-color: #000; 
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 2px solid var(--color-primary); 
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
         }
         
+        .version-box:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 0 15px var(--color-primary);
+        }
+
         .version-label {
-            color: #888;
-            font-size: 0.9em;
+            color: var(--color-text-muted);
+            font-size: 0.8em;
             margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .version-number {
-            color: #4CAF50;
-            font-size: 2em;
-            font-weight: bold;
+            color: var(--color-primary);
+            font-size: 3em;
+            font-weight: 800;
+            line-height: 1;
         }
         
+        /* Botón de Descarga */
         .download-btn {
-            background: #4CAF50;
-            color: white;
+            background-color: var(--color-primary);
+            color: var(--color-background);
             text-decoration: none;
             padding: 15px 40px;
-            border-radius: 30px;
+            border-radius: 50px; 
             display: inline-block;
-            margin: 20px 0;
+            margin: 20px 0; /* Espacio para separar de info y logo */
             font-size: 1.1em;
-            font-weight: bold;
-            transition: all 0.3s;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: none;
+            cursor: pointer;
+            animation: pulse 2s infinite cubic-bezier(0.66, 0.01, 0.34, 1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(30, 215, 96, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(30, 215, 96, 0); }
         }
         
         .download-btn:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            background-color: #1AA850;
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(30, 215, 96, 0.4);
+            animation: none; 
         }
         
-        .info {
-            color: #666;
-            font-size: 0.9em;
+        /* Texto arriba del botón */
+        .download-text-pre {
+            color: var(--color-text-light);
+            font-size: 1.05em;
             line-height: 1.6;
-            margin-top: 20px;
+            margin-bottom: 15px; /* Más separación del botón */
+            font-weight: 600; 
         }
-        
-        .links {
-            margin-top: 30px;
+
+        /* Texto y Logo de la Empresa (Desarrollada para:) */
+        .company-info {
+            margin-top: 25px; /* Ajustamos el margen superior */
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--color-text-muted);
+            font-size: 0.85em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .company-info-text {
+            /* El texto "Esta aplicación fue desarrollada..." */
+            margin-bottom: 15px; 
+            font-weight: 600;
+            color: var(--color-text-light);
+            font-size: 0.95em;
         }
         
-        .links a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 10px;
+        .company-logo-container img {
+            width: 150px; 
+            height: auto; /* Ajuste para mantener proporción */
+            vertical-align: middle;
+            transition: box-shadow 0.3s;
         }
-        
-        .links a:hover {
-            text-decoration: underline;
+        .company-logo-container img:hover {
+            box-shadow: 0 0 12px var(--color-primary);
         }
-        
-        #loading {
-            color: #888;
-            font-style: italic;
-        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📦 STOCKJAN</h1>
-        <p class="subtitle">Sistema de Actualizaciones</p>
+        <div class="logo-header">
+            <img src="images/logostockify.png" alt="STOCKJAN Logo"> 
+            <h1>STOCKJAN</h1>
+        </div>
+        
+        <p class="subtitle">Sistema de **Actualizaciones**</p>
         
         <div class="version-box">
             <div class="version-label">Última versión disponible</div>
-            <div class="version-number" id="version">Cargando...</div>
+            <div class="version-number" id="version">Cargando...</div> 
+        </div>
+
+        <div class="download-text-pre">
+            <p>Descarga la última versión para acceder a las nuevas funciones y correcciones.</p>
         </div>
         
         <a href="#" id="downloadBtn" class="download-btn" style="display: none;">
             Descargar APK
         </a>
         
-        <div class="info">
-            <p>Esta es la página de actualizaciones de STOCKJAN.</p>
-            <p>Descarga la última versión de la aplicación desde el botón de arriba.</p>
+        <div class="company-info">
+            <p class="company-info-text">Esta aplicación fue desarrollada exclusivamente para:</p>
+            
+            <div class="company-logo-container">
+                 <img src="images/logotorre.png" alt="Torre Quillota Logo">
+            </div>
         </div>
-        
-        <div class="links">
-            <a href="updates/version.json" target="_blank">version.json</a>
-            <a href="https://github.com/YojanCortes/stockjan" target="_blank">GitHub</a>
-        </div>
+
     </div>
 
     <script>
         // Cargar información de versión
         fetch('updates/version.json')
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar version.json');
+                }
+                return response.json();
+            })
             .then(data => {
-                document.getElementById('version').textContent = 'v' + data.version;
+                // Agregar 'v' al número de versión
+                document.getElementById('version').textContent = 'v' + data.version; 
                 const downloadBtn = document.getElementById('downloadBtn');
                 downloadBtn.href = data.apk;
                 downloadBtn.style.display = 'inline-block';
